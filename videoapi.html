@@ -67,10 +67,171 @@
 
 <div class="container">
     <div class="col-md-offset-2">
-        <img src="assets/progress.png" alt="Work in progress...">
+        <h1>Research into Video Call API's</h1>
+        <hr>
+        <p> As our client needs us to build a demonstration site to show off the feature of the
+             "At Home" system, we need to find a way to achieve the 2-way video consultation 
+             functionality. The client has said that we may be able to use some existing code
+             from DotComDoctor, however this may not be available until after the demo. Therefore 
+             we need to find alternatives to overcome this problem.
+        </p>
+        <p> After conducting research into available video API's that we could use we found the 
+            following options, we then evaluated each one based on some rough criteria below: 
+        </p>
+
+        <ul>
+            <li>Free to use</li>
+            <li>No watermarks or branding</li>
+            <li>No requirement for users to create accounts</li>
+            <li>Ability to take screenshots of video feed</li>
+            <li>Well documented API</li>            
+        </ul>
+
+        <h3><a href="https://vsee.com/">VSee</a></h3>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Pros</th>
+                    <th>Cons</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>30-day Free Trial</td>
+                    <td>User needs to install VSee into their browser</td>
+                </tr>
+                <tr>
+                    <td>Well Documented API</td>
+                    <td>Complicated installation process for users</td>
+                </tr>
+                <tr>
+                    <td>Used by many telemedicine companies</td>
+                    <td>No simple way to take screenshots</td>
+                </tr>                
+            </tbody>
+        </table>
+
+        <h3><a href="http://www.sightcall.com/api-sdk/">SightCall</a></h3>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Pros</th>
+                    <th>Cons</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Cross-Platform, works on mobile and web</td>
+                    <td>Plugin required in browser</td>
+                </tr>
+                <tr>
+                    <td>Well documented examples</td>
+                    <td>Need a "Standard" account to develop</td>
+                </tr>
+                <tr>
+                    <td>Users don't need to create an account</td>
+                    <td>No apparant way to take screenshots</td>
+                </tr>               
+            </tbody>
+        </table>
+
+        <h3><a href="https://msdn.microsoft.com/en-gb/skype/skypedeveloperplatform">Skype</a></h3>
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Pros</th>
+                    <th>Cons</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Cross-Platform, works on mobile and web</td>
+                    <td>Requires a plugin for video/audio</td>
+                </tr>
+                <tr>
+                    <td>Well documented examples</td>
+                    <td>Skype UI looks too familiar</td>
+                </tr>
+                <tr>
+                    <td>Works on IE, Chrome, Firefox, Safari</td>
+                    <td>No apparant way to take screenshots</td>
+                </tr>               
+            </tbody>
+        </table>
+
+        <h3><a href="https://tokbox.com/">TokBox</a></h3>
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Pros</th>
+                    <th>Cons</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Well documented API with tutorials and examples</td>
+                    <td>$50/month base fee</td>
+                </tr>
+                <tr>
+                    <td>Well documented examples</td>
+                    <td>Skype UI looks too familiar</td>
+                </tr>
+                <tr>
+                    <td>-</td>
+                    <td>No apparant way to take screenshots</td>
+                </tr>                
+            </tbody>
+        </table>
+
+        <h3><a href="https://developers.oovoo.com/">ooVoo</a></h3>
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Pros</th>
+                    <th>Cons</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Free version available</td>
+                    <td>Free version serves ads</td>
+                </tr>
+                <tr>
+                    <td>Paid version is by usage only ($0.005 per minute)</td>
+                    <td>Documentation is sparse although does exist</td>
+                </tr>
+                <tr>
+                    <td>Provides a way to take screenshots</td>
+                    <td>-</td>
+                </tr>   
+                <tr>
+                    <td>No branding or logos on the video call</td>
+                    <td>-</td>
+                </tr>        
+                <tr>
+                    <td>Users don't need to create an account</td>
+                    <td>-</td>
+                </tr>     
+            </tbody>
+        </table>
+
+        <h2>Conclusion</h2>
+        <p> After looking at some of our available options it seems like ooVoo provides all 
+            the features we will need. However it may be an issue as the only free version 
+            of ooVoo will display ads which will not be great for the demonstration. Therefore 
+            we may have to use the paid version. The other alternatives either are paid or have 
+            similar downsides.
+        </p>
+        <p> At this point we will continue our research into video API's, we will be experimenting 
+            with the ooVoo API and finding further alternatives in time for the demonstration in late-January.
+        </p>
+        <hr>
+        <br>
+
     </div>
-
-
 </div> <!-- /container -->
 
 <!-- Bootstrap core JavaScript
