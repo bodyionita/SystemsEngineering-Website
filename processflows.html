@@ -73,8 +73,15 @@
 <body>
 
 <div class="container">
-    <div class="col-md-offset-2">
-        <img src="assets/progress.png" alt="Work in progress...">
+    <div class="jumbotron">
+        <h1>Process Flow - Adding a Patient</h1>
+        <div id="process_cms_pdf"></div>
+        <script>PDFObject.embed("assets/pdf/process_cms.pdf", "#process_cms_pdf", {height: "700px"});</script>
+    </div>
+        <div class="jumbotron">
+        <h1>Process Flow - Arranging Appointments</h1>
+        <div id="process_video_pdf"></div>
+        <script>PDFObject.embed("assets/pdf/process_video.pdf", "#process_video_pdf", {height: "700px"});</script>
     </div>
 
 

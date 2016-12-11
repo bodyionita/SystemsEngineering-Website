@@ -72,9 +72,11 @@
 
 <body>
 
-<div class="container">
-    <div class="col-md-offset-2">
-        <img src="assets/progress.png" alt="Work in progress...">
+<div class="container">    
+    <div class="jumbotron">
+        <h1>User Stories</h1>
+        <div id="stories_pdf"></div>
+        <script>PDFObject.embed("assets/pdf/stories.pdf", "#stories_pdf", {height: "700px"});</script>
     </div>
 
 
