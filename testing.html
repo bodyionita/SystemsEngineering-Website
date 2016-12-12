@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <link rel="icon" href="assets/favicon.ico">
 
-    <title>At Home</title>
+    <title>DotComDoctor</title>
     <!-- Bootstrap core CSS -->
     <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -26,7 +26,7 @@
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <img href="#" src="assets/dcd.png" alt="At Home">
+                <img href="#" src="assets/dcd.png" alt="DotComDoctor">
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -70,12 +70,90 @@
 
 </head>
 
-<body>
+<body  background="assets/banner.jpg">
 
 <div class="container">
-    <div class="col-md-offset-2">
-        <img src="assets/progress.png" alt="Work in progress...">
+    <div class="well col-md-offset-1 col-md-10">
+        <h3>Introduction into testing:</h3><hr>
+        <p class="text-justify">“A dynamic verification that a program provides expected behaviors on a finite set of test
+            cases”, as IEEE defined it, Software Testing is a Software Engineering subdivision that
+            assures that the product works as expected, without having bugs or crushing. The program
+            is verified while running it, over some given tests, and a bigger number of different tests
+            suggest that the program is more likely to be correct and stable. Automated testing is
+            a way of simplifying the process, decreasing the effort of the developer, with a minimum
+            set of scripts. Due to the high demand, researches put a lot of effort on finding new
+            methods of automating the testing methods, inventing tools that can carry the process.
+            The method is called “a test automation framework”, and many such methods have been
+            implemented lately. Some of them are Selenium, Watir, Windmill, Ranorex, SoapUI and Sahi.</p>
+
+        <h3>Aims:</h3><hr>
+        <p class="text-justify">The main aim of Software testing is to make sure that a software product is working as
+            expected before putting it into use. This is expected to be the last stage of the production
+            cycle, the one before finishing the project. Some years ago, all the testing methods
+            were conducted by developers, but now many automated testing methods have been invented.
+            Many errors are now caught at the testing stage, as when you use the automation you are
+            testing a larger amount of inputs. </p>
+
+        <h3>Types of testing</h3><hr>
+        <p class="text-justify">Software testing has 2 distinct methods of testing as defined by Jovanović Irena:</p>
+        <dl class="dl-horizontal">
+            <dt>Black-box testing</dt><dd>testing software based on output requirements and
+            without any knowledge of the internal structure or coding in the program. In another words,
+            a black box is any device whose workings are not understood by or accessible to its user.</dd>
+            <dt>White-box testing</dt><dd>highly effective in detecting and resolving problems,
+            because bugs can often be found before they cause trouble. We can shortly define this
+            method as testing software with the knowledge of the internal structure and coding inside the program.</dd>
+        </dl>
+        <p class="text-justify">For our project, we will mainly use the black-box texting, because we don’t have much
+            experience with the API and the expected connections with the servers provided by MegaNexus,
+            but we will try to use white-box as much as possible when we can handle it, as it is more efficient.</p>
+
+        <h3>Levels of testing</h3><hr>
+        <p class="text-justify">For being able to apply testing to a broad-range of applications, software testing can be
+            abstracted to different levels. This levels as they are usually divided in 4 levels, with
+            a bottom-up approach, higher levels assuming successful and satisfactory completion of
+            lower level tests:</p>
+        <dl class="dl-horizontal">
+            <dt>Unit testing</dt><dd>narrow and well defined scope which tests a certain piece of
+            the software, without any dependencies and interactions</dd>
+            <dt>Integration testing</dt><dd>test the correct inter-operation of multiple subsystems</dd>
+            <dt>System testing</dt><dd>proving that the system implementation does not meet the system
+            requirements specification</dd>
+            <dt>Acceptance testing</dt><dd>showing that the end product does not meet the user requirement</dd>
+        </dl>
+
+        <h3>Research on the available tools</h3><hr>
+        <p class="text-justify">For our Automated Web Testing, we have researched on different tools, but we are waiting on
+            the API to choose the one that fits our project the most. The tools we have researched are</p>
+            <ol>
+                <li>
+                    <h3><small>Selenium</small></h3>
+                    <p class="text-justify">A well-known automated web testing tool used for automating web browsers
+                        across different platforms. It also has the support of some large browser
+                        vendors who made Selenium a native part of their browsers. As most of the
+                        forums are proposing this testing tool, we are considering it as a primary
+                        option, also because it is very well documented.</p>
+                </li>
+                <li>
+                    <h3><small>Watir</small></h3>
+                    <p class="text-justify">A set of Ruby libraries for automating web browsers, it allows writing tests
+                        very easily, and also supports maintaining them in a simple way. It drives
+                        browsers in a human behaviour, clicking links/buttons etc., and checks the
+                        results. It is a very good tool as it is the most appropriate to a real
+                        scenario, simulating a real user.</p>
+                </li>
+                <li>
+                    <h3><small>Windmill</small></h3>
+                    <p class="text-justify">Used for automate testing and debugging web apps, it has a cross-browser
+                        test recorder, JavaScript integration and an interactive shell that automates
+                        web browsers. We are also considering this option as we believe that is will
+                        be easier to test the video conferencing API using JavaScript.</p>
+                </li>
+
+            </ol>
+
     </div>
+
 
 
 </div> <!-- /container -->
