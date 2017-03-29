@@ -1,6 +1,6 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -26,47 +26,46 @@
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-               <title>AtHome</title>
+                <title>AtHome</title>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a></li>
                     <li class="dropdown">
-                        <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" 
-                        aria-expanded="false"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Requirements <span class="caret"></span></a>
+                        <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Requirements <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="requirements.html">Requirements</a></li>
                             <li><a href="userStories.html">User Stories</a></li>
                             <li><a href="processFlows.html">Process Flows</a></li>
                         </ul>
-                    </li>                    
+                    </li>
                     <li class="dropdown">
-                        <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                         aria-expanded="false"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Research <span class="caret"></span></a>
+                        <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Research <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="mockupTools.html">Mock-Up Tools</a></li>
-                            <li><a href="technologies.html">Technologies</a></li>                        
+                            <li><a href="technologies.html">Technologies</a></li>
                             <li><a href="videoapi.html">Video API's</a></li>
                             <li><a href="testingTools.html">Testing Tools</a></li>
 
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                         aria-expanded="false"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> HCI <span class="caret"></span></a>
+                        <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> HCI <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="mockups.html">Mock-Ups</a></li>                            
+                            <li><a href="mockups.html">Mock-Ups</a></li>
                             <li><a href="finalDelivery.html">Final Delivery</a></li>
 
                         </ul>
-                    </li>                   
-                    <li ><a href="design.html"><span class="glyphicon glyphicon-qrcode" aria-hidden="true"></span> Design</a></li>
-                    <li ><a href="testing.html"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Testing</a></li>
-                    <li ><a href="evaluation.html"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Evaluation</a></li>
+                    </li>
+                    <li><a href="design.html"><span class="glyphicon glyphicon-qrcode" aria-hidden="true"></span> Design</a></li>
+                    <li><a href="testing.html"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Testing</a></li>
+                    <li><a href="evaluation.html"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Evaluation</a></li>
                     <li class="dropdown active">
-                        <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                         aria-expanded="false"><span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span> Management <span class="caret"></span></a>
+                        <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span> Management <span class="caret"></span></a>
                         <ul class="dropdown-menu">
+                            <li><a href="manual.html">Manuals</a></li>
+                            <li><a href="client.html">Client Feedback/Meetings</a></li>
+                            <li><a href="gantt.html">Gantt Chart</a></li>
                             <li class="dropdown-header">Bi-Weekly Reports</li>
                             <li><a href="12_10.html">12 October</a></li>
                             <li class="active"><a href="28_10.html">28 October</a></li>
@@ -82,30 +81,39 @@
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="https://github.com/omwbennett/athome" target="_blank"> <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span> Git Repository</a></li>
+                    <li>
+                        <a href="https://github.com/omwbennett/athome" target="_blank"> <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span> Git Repository</a>
+                    </li>
                 </ul>
-            </div><!--/.nav-collapse -->
+            </div>
+            <!--/.nav-collapse -->
         </div>
     </nav>
 
 </head>
 
-<body  background="assets/banner.jpg">
-<div class="container">
-    <div class="jumbotron">
-        <h1>Bi-Weekly 28 October</h1>
-        <div id="pdf"></div>
-        <script>PDFObject.embed("assets/pdf/28_10.pdf", "#pdf", {height: "700px"});</script>
+<body background="assets/banner.jpg">
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Bi-Weekly 28 October</h1>
+            <div id="pdf"></div>
+            <script>
+                PDFObject.embed("assets/pdf/28_10.pdf", "#pdf", { height: "700px" });
+            </script>
+        </div>
     </div>
-</div> <!-- /container -->
+    <!-- /container -->
 
-<!-- Bootstrap core JavaScript
+    <!-- Bootstrap core JavaScript
 ================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-<script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
-<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>
+        window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')
+    </script>
+    <script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
 </body>
+
 </html>
