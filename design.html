@@ -280,23 +280,17 @@ def allowed_file(filename):
                     store the file in the FILE_UPLOADS folder and finally update our database with the correct image path for that resident.
                 </p>
                 <pre><p>file = request.files['file']
-            if file and allowed_file(file.filename):
-                name = (file.filename).split(".")
-                name[0] = str(resident_id)
-                filename = name[0] + "." + name[1]
-                filename = secure_filename(filename)
-
-                file.save(app.config['UPLOAD_FOLDER'] + '\\' + filename)
-                
-                ...
-
-                db = get_db()
-                db.execute(query, args)
-                db.commit()</p></pre>
-
-
-
-
+    if file and allowed_file(file.filename):
+        name = (file.filename).split(".")
+        name[0] = str(resident_id)
+        filename = name[0] + "." + name[1]
+        filename = secure_filename(filename)
+        file.save(app.config['UPLOAD_FOLDER'] + '\\' + filename)
+        ...
+        db = get_db()
+        db.execute(query, args)
+        db.commit()</p></pre>
+        
                 <h3>OpenTOK API</h3>
                 <p>Some description here.</p>
                 <pre><p>Some code here.</p></pre>
