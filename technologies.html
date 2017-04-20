@@ -95,8 +95,147 @@
 <body background="assets/banner.jpg">
 
     <div class="container">
-        <div class="col-md-offset-1 col-md-10">
-            <img src="assets/progress.png" alt="Work in progress...">
+        <div class="well col-md-offset-1 col-md-10">
+            <h1> Technologies Research </h1>
+            <hr>
+            <p class="text-justify"> In order to develop our proof-of-concept websites we needed to pick adequate technologies to develop the system. This included
+                which frameworks/technologies to use for the backend, database and frontend. We drew up a list of pros and cons for each of the items we researched:
+            </p>
+
+            <h2>Backend Options</h2>
+
+            <h3><a href="http://flask.pocoo.org/">Flask</a></h3>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Pros</th>
+                        <th>Cons</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Previous experience</td>
+                        <td>Minimal features</td>
+                    </tr>
+                    <tr>
+                        <td>Uses Python</td>
+                        <td>Not suited to larger applications</td>
+                    </tr>
+                    <tr>
+                        <td>Lots of simple tutorials</td>
+                        <td>Not scalable very well</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3><a href="https://nodejs.org/en/">Node.js</a></h3>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Pros</th>
+                        <th>Cons</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Asynchronous event driven I/O</td>
+                        <td>No prior experience</td>
+                    </tr>
+                    <tr>
+                        <td>Lots of available learning resources</td>
+                        <td>Lots of unnecessary features</td>
+                    </tr>
+                    <tr>
+                        <td>Many packages available via npm</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Suited for larger applications</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3><a href="http://rubyonrails.org/">Ruby on Rails</a></h3>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Pros</th>
+                        <th>Cons</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Lots of tools available</td>
+                        <td>No prior experience</td>
+                    </tr>
+                    <tr>
+                        <td>Moderate amount of learning resources</td>
+                        <td>Not familiar with the language</td>
+                    </tr>
+                    <tr>
+                        <td>Many packages available via npm</td>
+                        <td>Supposedly slow relative runtime speeds</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Database Options</h2>
+
+            <h3><a href="https://www.sqlite.org/">SQLite3</a></h3>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Pros</th>
+                        <th>Cons</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Simple, lightweight</td>
+                        <td>Not scalable</td>
+                    </tr>
+                    <tr>
+                        <td>Fast SQL engine</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Documentation on usage with Flask</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3><a href="https://www.sqlalchemy.org/">SQLAlchemy</a></h3>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Pros</th>
+                        <th>Cons</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Simple, lightweight and fast</td>
+                        <td>More complex when doing simple operations in Flask</td>
+                    </tr>
+                    <tr>
+                        <td>Documentation on usage with Flask</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+            <h2>Conclusion</h2>
+            <p class="text-justify">After looking at some of the options available to us, we decided to go with Flask for our backend as we had used it extensively in the past
+                and we knew how to get started with it straight away. This would reduce the amount of time needed to learn the technology, giving us more time to focus on developing
+                features. We did not research any other front-end options, we decided that Bootstrap would be the simplest option and we already knew it could provide all the features
+                we needed. Regarding the database, we chose to go with SQLite3 as we had little experience with databases thus far and there were plenty of resources available for SQLite3.
+                Furthermore we only required a simple database with a few tables and so we did not need many of the additional features other technologies were offering.
+            </p>
+            <hr>
+            <br>
         </div>
     </div>
     <!-- /container -->
