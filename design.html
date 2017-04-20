@@ -95,11 +95,213 @@
 <body background="assets/banner.jpg">
 
     <div class="container">
-        <div class="col-md-offset-1 col-md-10">
-            <img src="assets/progress.png" alt="Work in progress...">
+        <div class="well col-md-offset-1 col-md-10">
+            <h1>System Architecture </h1>
+            <hr>
+            <img class="center-block" src="assets/sysDiagram.png">
+
+            <h4>Flask App</h4>
+            <p> A standard Python Flask application. We have a set of endpoints for each demo site, those for the GP site are
+                affixed with "2". The app queries a single database which stores patient records, schedule information and
+                notifications. Flask has a set of design patterns that make it easy to implement functionality such as file
+                uploading, cookies and database querying.
+            </p>
+
+            <h4>GP Demo Site</h4>
+            <p> A set of html pages served by the flask web server which encompass the GP end of the consultation. HTML/CSS styling
+                is designed to be as similar in terms of look and feel as an existing solution that GP's use. We made use
+                of Bootstrap to easily style the website.
+            </p>
+
+            <h4>Care Home Demo Site</h4>
+            <p> A set of html pages served by the flask web server which encompass the Care Home end of the consultation. HTML/CSS
+                styling is designed to be similar to our Balsamiq mockups, but where changes seem appropriate they have been
+                made. Again, we used Boostrap for this.
+            </p>
+
+            <h1>Database Structure</h4>
+                <img class="center-block" src="assets/erDiagram.png">
+                <hr>
+
+                <p> As the aim of the application is to be demonstrated on a laptop to potential clients, a single shared database
+                    for demonstration purposes is suitable. Furthermore, a single database makes it easy for data to be accessed
+                    and updated between the two demo sites. For example, when a Care Home adds a patient, this is instantly
+                    accessible by the GP site. In the future this database will not be needed as the system will make use
+                    of existing patient database API's such as VISION.
+                </p>
+                <p>
+                    The residents table is meant to imitate the patient information that would be available through the VISION API. A Care Home
+                    would log in and book an appointment for a resident in the care home and residents can have multiple
+                    appointments set up, therefore there is a one-to-many relationship. Each appointment is with a single
+                    GP, however GP's can themselves have multiple appointments booked with various different residents/patients.
+                    The schedule table holds every single appointment slot for all GP's, this is what populates the book
+                    appointment page in the Care Home demo site. Prior to booking appointments, a Care Home has to fill out
+                    a preliminary medical questionnaire for their resident, indicating the type of health issue the appointment
+                    is for. To facilitate this booking process in the backend we created a separate Health_issues table for
+                    this purpose. When appointments are made, a confirmation notification is generated for the user logged
+                    into the Care Home demo site, these are generated then stored in the Notification table.
+                </p>
+
+                <h1>Development Tools</h1>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Function</th>
+                            <th>Tools Used</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Communication</td>
+                            <td>Skype for client meetings, Messenger for group discussions</td>
+                        </tr>
+                        <tr>
+                            <td>File Storage</td>
+                            <td>Google Drive for reports and group documents</td>
+                        </tr>
+                        <tr>
+                            <td>UI Design</td>
+                            <td>Balsamiq for UI Mockups</td>
+                        </tr>
+                        <tr>
+                            <td>Version Control</td>
+                            <td>GitHub</td>
+                        </tr>
+                        <tr>
+                            <td>IDE</td>
+                            <td>Basic text editors such as VSCode, Sublime for editing of HTML/CSS</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h1>Design Patterns</h1>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Design Pattern</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Row Factory</td>
+                            <td>To simplify working with SQLite, the row factory function is executed for every result obtained
+                                from a DB query, converting the returned result into a Python dictionary.</td>
+                        </tr>
+                        <tr>
+                            <td>Login Required Decorators</td>
+                            <td>Applied to views which require a user to be logged in, the decorator checks the global request
+                                object's user field and redirects if a user is not logged in.</td>
+                        </tr>
+                        <tr>
+                            <td>Route Decorators</td>
+                            <td>Used to bind a function to a URL, some of our views make use of variable rules to create simpler
+                                URLs.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Initial Schemas</td>
+                            <td>On initiating the application, a database is created from our schema.sql file. This process is
+                                done through a create_db() function.</td>
+                        </tr>
+                        <tr>
+                            <td>Flask File Uploads</td>
+                            <td>We follow a straightforward Flask file uploading pattern to let Care Homes upload profile pictures
+                                of residents, this is done by directing our application to access the files dict in the request
+                                object, then using save() to save the file to the filesystem.</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+
+                <h1>Implementation Details of Key Functionalities</h1>
+                <h3>Database Connections</h3>
+                <p> Based off the common Flask database connection patterns we implemented several helper functions to achieve
+                    this key functionality. On initialising the application, the database is initialised with <i>initdb()</i>.
+                    This calls <i>get_db()</i> which in turn calls <i>connect_db()</i> This function makes use of the row
+                    factory design pattern to return python dictionaries which are easier to manipulate. <i>initdb()</i>                    is then able to execute our <i>schema.sql</i> file which contains the blueprints to build our database
+                    and populate it with initial values.
+                </p>
+                <pre><p>def connect_db():
+    """Connects to the specific database."""
+    rv = sqlite3.connect(app.config['DATABASE'])
+    rv.row_factory = sqlite3.Row
+    return rv
+
+@app.cli.command()
+def initdb():
+    """Initializes the database."""
+    db = get_db()
+    with app.open_resource('schema.sql', mode='r') as f:
+        db.cursor().executescript(f.read())
+    db.commit()
+    print('Initialized the database.')
+
+def get_db():
+    """Opens a new database connection if there is none yet for the current application context."""
+    if not hasattr(g, 'sqlite_db'):
+        g.sqlite_db = connect_db()
+    return g.sqlite_db
+
+def close_db(error):
+    """Closes the database again at the end of the request."""
+    if hasattr(g, 'sqlite_db'):
+        g.sqlite_db.close()  
+            </p></pre>
+
+                <p>
+                    Then we can easily query our database using our <i>query_db()</i> function, which executes a SQL query
+                    contained in a string, then returns a dictionary object produced by the row factory.
+                </p>
+                <pre><p>def query_db(query, args=(), one=False):
+    """Helper function to make db queries"""
+    cur = get_db().execute(query, args)
+    rv = cur.fetchall()
+    cur.close()
+    return (rv[0] if rv else None) if one else rv  </p></pre>
+
+
+
+                <h3>File Uploads</h3>
+                <p>To allow Care Homes to update their resident's profile pictures we needed to implement a file upload feature into our Flask App.
+                    The first step was to set a list of allowed file extensions, to ensure for security reasons that certain types of files are not uploaded onto the fileserver.
+                    We do this by setting a global var in our app, and creating a simple helper function to determine if a given filename should be allowed or not.
+                </p>
+
+                <pre><p>ALLOWED_EXTENSIONS = set(['png', 'jpeg', 'jpg', 'gif'])
+                    
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS</p></pre>
+
+                <p>After determining that a file is of the right type, we then implement the following block whenever our server receives a POST request from the addResident or editResident endpoints.
+                    These are the two instances where a user would be able to upload a profile picture. The block is quite straightforward, 
+                    we store the file from the request object, check if it is allowed, give the file a new name for storing into our fileserver, 
+                    store the file in the FILE_UPLOADS folder and finally update our database with the correct image path for that resident.
+                </p>
+                <pre><p>file = request.files['file']
+            if file and allowed_file(file.filename):
+                name = (file.filename).split(".")
+                name[0] = str(resident_id)
+                filename = name[0] + "." + name[1]
+                filename = secure_filename(filename)
+
+                file.save(app.config['UPLOAD_FOLDER'] + '\\' + filename)
+                
+                ...
+
+                db = get_db()
+                db.execute(query, args)
+                db.commit()</p></pre>
+
+
+
+
+                <h3>OpenTOK API</h3>
+                <p>Some description here.</p>
+                <pre><p>Some code here.</p></pre>
+
         </div>
-
-
     </div>
     <!-- /container -->
 
