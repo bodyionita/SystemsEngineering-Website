@@ -95,8 +95,276 @@
 <body background="assets/banner.jpg">
 
     <div class="container">
-        <div class="col-md-offset-1 col-md-10">
-            <img src="assets/progress.png" alt="Work in progress...">
+        <div class="well col-md-offset-1 col-md-10">
+            <h1>Testing</h1>
+            <p>Throughout the entire development cycle we have also been thinking about testing, be it testing of the code
+            or testing its compatibility. This was done to ensure that our platforms meet the high standards required by
+            our client, so along with each new feature implemented we have been creating the tests accordingly.
+            <br>This page goes into the details of each testing strategy we have went through.</p>
+
+            <h3>Unit Testing</h3>
+            <p>To ensure that our software is complete and correct, we developed a collection of unit tests to verify the back-end
+            and front-end of the system. Using the unit tests whenever we were adding a new feature, or changed anything in the code,
+                we were making sure that no new addition would introduce bugs into the code.</p>
+            <p>
+                Our back-end is based on Python so we made use of the <i>unittest</i> integrated library. Also for the purpose
+                of better isolating different parts of the code, the <b>MagicMock</b> class of the <b>mock</b> library was used.
+                This library allowed us to mock the connection to the Video API and check the rendering of the webcam independently
+                of the status of the API.</p>
+            <p>
+                Here are some examples of how the testing works:
+            </p>
+            <li> Testing if the application is running successfully.</li>
+            <pre><p>def test_flask_application_is_up_and_running(self):
+    response = urllib2.urlopen(self.get_server_url())
+    self.assertEqual(response.code, 200)</p></pre>
+            <li> Testing if the GP site appointment page renders the calendar pick option correctly.</li>
+            <pre><p>def test_rendering_gp_appointments(self):
+    # sends HTTP GET request to the application
+    # on the specified path
+    rv = self.app.get('/2/appointments')
+
+    # assert the response data
+    self.assertEqual(result.data, "Calendar")</p></pre>
+            <li> Testing if the home page after login and login errors show up correctly.</li>
+            <pre><p>def test_login(self):
+    rv = self.login('admin', 'default')
+    assert b'Left blank' in rv.data
+
+    rv = self.login('adminx', 'default')
+    assert b'Invalid username' in rv.data
+
+    rv = self.login('admin', 'defaultx')
+    assert b'Invalid password' in rv.data</p></pre>
+            <h3>Manual Testing</h3>
+            <p>Most of the tests included in the section have been already transformed into script run tests. For each of
+            the test cases we sent both valid and invalid input so as to assert the correct output. All the tests written bellow
+            have passed. This is due to extensive testing and bug-fixing the code so as to none of the scenarios we thought of would
+                fail.</p>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Scenario</th>
+                        <th>Test Data</th>
+                        <th>Type of data</th>
+                        <th>Expected results</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td class="text-center" colspan="4"><i>AtHome Site</i></td>
+                    </tr>
+                    <tr>
+                        <td>Render login page</td>
+                        <td>GET Request</td>
+                        <td>Normal</td>
+                        <td>All the elements of the page are rendered and the positioning is also as desired.</td>
+                    </tr>
+                    <tr>
+                        <td>Render home page</td>
+                        <td>GET Request</td>
+                        <td>Normal</td>
+                        <td>All the elements of the page are rendered and the positioning is also as desired.</td>
+                    </tr>
+                    <tr>
+                        <td>Render appointments page</td>
+                        <td>GET Request</td>
+                        <td>Normal</td>
+                        <td>All the elements of the page are rendered and the positioning is also as desired.</td>
+                    </tr>
+                    <tr>
+                        <td>Login</td>
+                        <td>username = admin, password = default</td>
+                        <td>Normal</td>
+                        <td>Successful login and redirect to the home page.</td>
+                    </tr>
+                    <tr>
+                        <td>Login</td>
+                        <td>username = adminX, password = default</td>
+                        <td>Abnormal</td>
+                        <td>Showing "invalid username" error.</td>
+                    </tr>
+                    <tr>
+                        <td>Login</td>
+                        <td>username = admin, password = defaultX</td>
+                        <td>Abnormal</td>
+                        <td>Showing "invalid password" error.</td>
+                    </tr>
+                    <tr>
+                        <td>Filtering database</td>
+                        <td>gender = male</td>
+                        <td>Normal</td>
+                        <td>Only the data matching the filter shown.</td>
+                    </tr>
+                    <tr>
+                        <td>Filtering database</td>
+                        <td>age = 20</td>
+                        <td>Normal</td>
+                        <td>Only the data matching the filter shown.</td>
+                    </tr>
+                    <tr>
+                        <td>Filtering database</td>
+                        <td>name = Adam</td>
+                        <td>Normal</td>
+                        <td>Only the data matching the filter shown.</td>
+                    </tr>
+                    <tr>
+                        <td>Adding patient to database</td>
+                        <td>data accordingly to the standards</td>
+                        <td>Normal</td>
+                        <td>Successful record added to the database</td>
+                    </tr>
+                    <tr>
+                        <td>Adding patient to database</td>
+                        <td>data out of parameters imposed by client-side validation</td>
+                        <td>Abnormal</td>
+                        <td>Rejected by the server and no change done to the database.</td>
+                    </tr>
+                    <tr>
+                        <td>Creation of a new appointment</td>
+                        <td>choosing one of the time slots and doctors</td>
+                        <td>Normal</td>
+                        <td>Successful new appointment at the selected time and with the selected doctor.</td>
+                    </tr>
+                    <tr>
+                        <td>Notification system</td>
+                        <td>mock creation of a new appointment</td>
+                        <td>Normal</td>
+                        <td>New notification appears stating the new appointment.</td>
+                    </tr>
+                    <tr>
+                        <td>Waiting room videos rendering</td>
+                        <td>GET request</td>
+                        <td>Normal</td>
+                        <td>The video in the waiting room automatically starts playing while waiting for the video conference.</td>
+                    </tr>
+                    <tr>
+                        <td>Video conference rendering</td>
+                        <td>mock of the OpenTok API, and just getting the feed from the client's webcam</td>
+                        <td>Normal</td>
+                        <td>The feed from the client webcam shows up as soon as the page is fully loaded.</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center" colspan="4"><i>GP Site</i></td>
+                    </tr>
+                    <tr>
+                        <td>Render login page</td>
+                        <td>GET Request</td>
+                        <td>Normal</td>
+                        <td>All the elements of the page are rendered and the positioning is also as desired.</td>
+                    </tr>
+                    <tr>
+                        <td>Render home page</td>
+                        <td>GET Request</td>
+                        <td>Normal</td>
+                        <td>All the elements of the page are rendered and the positioning is also as desired.</td>
+                    </tr>
+                    <tr>
+                        <td>Render appointments page</td>
+                        <td>GET Request</td>
+                        <td>Normal</td>
+                        <td>All the elements of the page are rendered and the positioning is also as desired.</td>
+                    </tr>
+                    <tr>
+                        <td>Login</td>
+                        <td>username = admin, password = default</td>
+                        <td>Normal</td>
+                        <td>Successful login and redirect to the home page.</td>
+                    </tr>
+                    <tr>
+                        <td>Login</td>
+                        <td>username = adminX, password = default</td>
+                        <td>Abnormal</td>
+                        <td>Showing "invalid username" error.</td>
+                    </tr>
+                    <tr>
+                        <td>Login</td>
+                        <td>username = admin, password = defaultX</td>
+                        <td>Abnormal</td>
+                        <td>Showing "invalid password" error.</td>
+                    </tr>
+                    <tr>
+                        <td>Appointments page</td>
+                        <td>GET request based on today's date</td>
+                        <td>Normal</td>
+                        <td>Successfully shows up the appointments for the date requested.</td>
+                    </tr>
+                    <tr>
+                        <td>Calendar pick-up</td>
+                        <td>Click on the icon</td>
+                        <td>Normal</td>
+                        <td>Successfully shows up the calendar pick-up.</td>
+                    </tr>
+                    <tr>
+                        <td>Calendar POST request</td>
+                        <td>Selecting random dates from the calendar</td>
+                        <td>Normal</td>
+                        <td>Data being sent through the POST request matches the data selected.</td>
+                    </tr>
+                    <tr>
+                        <td>Creation of a new appointment</td>
+                        <td>choosing one of the time slots and doctors</td>
+                        <td>Normal</td>
+                        <td>Successful new appointment at the selected time and with the selected doctor.</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center" colspan="4"><i>Server</i></td>
+                    </tr>
+                    <tr>
+                        <td>Server running</td>
+                        <td>send command to start-up the server</td>
+                        <td>Normal</td>
+                        <td>The assertion of the response code when accessing the site's url matches code 200.</td>
+                    </tr>
+                    <tr>
+                        <td>Server stop</td>
+                        <td>send command the server</td>
+                        <td>Normal</td>
+                        <td>The command kills all processes related to hosting and runnign the server, and it is no longer
+                        accessible through any urls.</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h3>Compatibility Testing</h3>
+            <p>
+                Since the system we have built is meant to be accessed from a variety of devices such as Laptops, Desktop Computers,
+                Tablets (mainly widescreen ones) it was necessary to conduct a number of trials using different devices and also
+                browsers which they use to access the platform.
+
+            </p>
+            <h4>Operating System compatibility</h4>
+            <p>
+                Being a web-based platform, our system does not have many restrictions regarding the Operating System as long
+                as it is capable of running a browser. The limitation comes from the OpenTok API as it is not capable
+                of the 2 way conference on Mobile devices with the following Operating Systems: iOS, Android, Amazon Fire OS, Kindle OS.
+                The list might not limit to this, but this was the range of OS we could test the platform on and discover the API does not
+                work.
+            </p>
+            <h4>Browser compatibility</h4>
+            <p>
+                All the manual testing we have done have been conducted on most of the popular browser's that exists now, and have successfully
+                concluded that it works seamlessly across all of them ( Firefox, Opera, Chrome, Safari, Internet Explorer).
+            </p>
+            <h4>Screen resolution/ratio compatibility</h4>
+            <p>
+                A big concern when we are talking about a web based platform is the responsiveness of all its elements. This means
+                that we had to build the websites such as regardless of the screen resolution it is accessed on, all the necessary
+                data is displayed correctly, and all sections of the website can be accessed.
+            </p>
+            <p>
+                We achieved this through abiding to the Bootstrap Framework's general good practices and making use of its grid system
+                and arrangement of the html elements based on the screen resolution. We tested it using Google Chrome's built-in
+                functionality of resizing the screen and also making it seem as being accessed from a tablet, specially designed for this
+                purpose.
+            </p>
+            <h3>User Acceptance Testing (UAT)</h3>
+            <p>
+                Last but not least, user acceptance testing had an important role in ensuring our software meets the need of our client
+                and the future potential users, by seeing if it can handle real-world scenarios. We presented our solution to our client
+                twice and during those times, we had a number of different people trying to use the system and see if they have
+                any difficulties in understanding and/or getting the expected result after a precise set of actions.
+            </p>
         </div>
 
 
