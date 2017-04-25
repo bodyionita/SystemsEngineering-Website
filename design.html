@@ -101,35 +101,35 @@
             <img class="center-block" src="assets/sysDiagram.png">
 
             <h4>Flask App</h4>
-            <p> A standard Python Flask application. We have a set of endpoints for each demo site, those for the GP site are
+            <p class="text-justify"> A standard Python Flask application. We have a set of endpoints for each demo site, those for the GP site are
                 affixed with "2". The app queries a single database which stores patient records, schedule information and
                 notifications. Flask has a set of design patterns that make it easy to implement functionality such as file
                 uploading, cookies and database querying.
             </p>
 
             <h4>GP Demo Site</h4>
-            <p> A set of html pages served by the flask web server which encompass the GP end of the consultation. HTML/CSS styling
+            <p class="text-justify"> A set of html pages served by the flask web server which encompass the GP end of the consultation. HTML/CSS styling
                 is designed to be as similar in terms of look and feel as an existing solution that GP's use. We made use
                 of Bootstrap to easily style the website.
             </p>
 
             <h4>Care Home Demo Site</h4>
-            <p> A set of html pages served by the flask web server which encompass the Care Home end of the consultation. HTML/CSS
+            <p class="text-justify"> A set of html pages served by the flask web server which encompass the Care Home end of the consultation. HTML/CSS
                 styling is designed to be similar to our Balsamiq mockups, but where changes seem appropriate they have been
                 made. Again, we used Boostrap for this.
             </p>
 
-            <h1>Database Structure</h4>
+            <h1>Database Structure</h1>
                 <img class="center-block" src="assets/erDiagram.png">
                 <hr>
 
-                <p> As the aim of the application is to be demonstrated on a laptop to potential clients, a single shared database
+                <p class="text-justify"> As the aim of the application is to be demonstrated on a laptop to potential clients, a single shared database
                     for demonstration purposes is suitable. Furthermore, a single database makes it easy for data to be accessed
                     and updated between the two demo sites. For example, when a Care Home adds a patient, this is instantly
                     accessible by the GP site. In the future this database will not be needed as the system will make use
                     of existing patient database API's such as VISION.
                 </p>
-                <p>
+                <p class="text-justify">
                     The residents table is meant to imitate the patient information that would be available through the VISION API. A Care Home
                     would log in and book an appointment for a resident in the care home and residents can have multiple
                     appointments set up, therefore there is a one-to-many relationship. Each appointment is with a single
@@ -185,28 +185,28 @@
                     <tbody>
                         <tr>
                             <td>Row Factory</td>
-                            <td>To simplify working with SQLite, the row factory function is executed for every result obtained
+                            <td class="text-justify">To simplify working with SQLite, the row factory function is executed for every result obtained
                                 from a DB query, converting the returned result into a Python dictionary.</td>
                         </tr>
                         <tr>
                             <td>Login Required Decorators</td>
-                            <td>Applied to views which require a user to be logged in, the decorator checks the global request
+                            <td class="text-justify">Applied to views which require a user to be logged in, the decorator checks the global request
                                 object's user field and redirects if a user is not logged in.</td>
                         </tr>
                         <tr>
                             <td>Route Decorators</td>
-                            <td>Used to bind a function to a URL, some of our views make use of variable rules to create simpler
+                            <td class="text-justify">Used to bind a function to a URL, some of our views make use of variable rules to create simpler
                                 URLs.
                             </td>
                         </tr>
                         <tr>
                             <td>Initial Schemas</td>
-                            <td>On initiating the application, a database is created from our schema.sql file. This process is
+                            <td class="text-justify">On initiating the application, a database is created from our schema.sql file. This process is
                                 done through a create_db() function.</td>
                         </tr>
                         <tr>
                             <td>Flask File Uploads</td>
-                            <td>We follow a straightforward Flask file uploading pattern to let Care Homes upload profile pictures
+                            <td class="text-justify">We follow a straightforward Flask file uploading pattern to let Care Homes upload profile pictures
                                 of residents, this is done by directing our application to access the files dict in the request
                                 object, then using save() to save the file to the filesystem.</td>
                         </tr>
@@ -217,7 +217,7 @@
 
                 <h1>Implementation Details of Key Functionalities</h1>
                 <h3>Database Connections</h3>
-                <p> Based off the common Flask database connection patterns we implemented several helper functions to achieve
+                <p class="text-justify"> Based off the common Flask database connection patterns we implemented several helper functions to achieve
                     this key functionality. On initialising the application, the database is initialised with <i>initdb()</i>.
                     This calls <i>get_db()</i> which in turn calls <i>connect_db()</i> This function makes use of the row
                     factory design pattern to return python dictionaries which are easier to manipulate. <i>initdb()</i>                    is then able to execute our <i>schema.sql</i> file which contains the blueprints to build our database
@@ -250,7 +250,7 @@ def close_db(error):
         g.sqlite_db.close()  
             </p></pre>
 
-                <p>
+                <p class="text-justify">
                     Then we can easily query our database using our <i>query_db()</i> function, which executes a SQL query
                     contained in a string, then returns a dictionary object produced by the row factory.
                 </p>
@@ -264,7 +264,7 @@ def close_db(error):
 
 
                 <h3>File Uploads</h3>
-                <p>To allow Care Homes to update their resident's profile pictures we needed to implement a file upload feature into our Flask App.
+                <p class="text-justify">To allow Care Homes to update their resident's profile pictures we needed to implement a file upload feature into our Flask App.
                     The first step was to set a list of allowed file extensions, to ensure for security reasons that certain types of files are not uploaded onto the fileserver.
                     We do this by setting a global var in our app, and creating a simple helper function to determine if a given filename should be allowed or not.
                 </p>
@@ -274,7 +274,7 @@ def close_db(error):
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS</p></pre>
 
-                <p>After determining that a file is of the right type, we then implement the following block whenever our server receives a POST request from the addResident or editResident endpoints.
+                <p class="text-justify">After determining that a file is of the right type, we then implement the following block whenever our server receives a POST request from the addResident or editResident endpoints.
                     These are the two instances where a user would be able to upload a profile picture. The block is quite straightforward, 
                     we store the file from the request object, check if it is allowed, give the file a new name for storing into our fileserver, 
                     store the file in the FILE_UPLOADS folder and finally update our database with the correct image path for that resident.
@@ -292,9 +292,62 @@ def allowed_file(filename):
         db.commit()</p></pre>
         
                 <h3>OpenTOK API</h3>
-                <p>Some description here.</p>
-                <pre><p>Some code here.</p></pre>
-
+                <p class="text-justify">For the video conferencing feature, the main one of our system, we have used the OpenTok API. </p>
+                <p class="text-justify">The API is imported as a library and requires back-end credentials according to the account we have purchased
+                it on. The first time the API is used is when creating an appointment by creating a session(Room id) which will be
+                used for that specific appointment.</p>
+                <pre><p>@app.route('/appointments/&lt;resident_id&gt;/book/&lt;slot_id&gt;/payment/confirm')
+def make_booking(resident_id, slot_id):
+    """Renders the payment template"""
+    if not session.get('logged_in'):
+        return redirect(url_for('login'))
+    else:
+        ...
+        openTokSession = opentok_sdk.create_session(session_address)
+        ...
+        args = [openTokSession.session_id, s['doctorId'], r['id'], s['slot_date'], s['slot_time'], 2, "Booked"]
+        db = get_db()
+        db.execute(query, args)
+        db.execute("delete from schedule where id = {}".format(slot_id))
+        db.commit()
+        ...
+        return redirect(url_for('residents_id', resident_id=resident_id))</p></pre>
+        <p class="text-justify">In our design OpenTok is used again when trying to connect to the conference call. The session id(room) which was
+        created previously with the appointment and stored in the database, is now retrieved and both the Doctor's and th Patient's
+        devices are treated as client and generated a Client Id to join the room.</p>
+            <pre><p>function connect() {
+  session = OT.initSession(apiKey, sessionId);
+  session.on({
+    connectionCreated: function (event) {
+      connectionCount++;
+      ...
+    },
+    connectionDestroyed: function (event) {
+      connectionCount--;
+      ...
+    },
+    ...
+    streamCreated: function(event) {
+      ...
+        var subscriber = session.subscribe(event.stream,
+          'subscriber',
+          subscriberProperties,
+          function (error) {
+            ...
+        });
+    }
+  });
+  session.connect(token, function(error) {
+      ...
+      session.publish(publisher, function(error) {
+            ...
+          });
+      publisher.on('streamCreated', function (event) {
+          console.log('The publisher started streaming.');
+      });
+    }
+  });
+}</p></pre>
         </div>
     </div>
     <!-- /container -->
