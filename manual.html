@@ -96,8 +96,67 @@
 <body  background="assets/banner.jpg">
 
 <div class="container">
-    <div class="col-md-offset-1 col-md-10">
-        <img src="assets/progress.png" alt="Work in progress...">
+        <div class="well col-md-offset-1 col-md-10">
+        
+ 	<h1>Client Manual</h1>
+	<h2>Cloning Repo</h2>
+            	<p class="text-justify">Considering you already have git installed, the cloning of the repository will not work until 
+		you also install Git LFS (Large File Storage) , since it contains a number of large files referenced by pointers to an external server. <br>
+		<br>1.	Go to Git LFS and download the distribution matching your operating system.
+		<br>2.	Run the installer and follow the instructions.
+		<br>3.	Navigate to installation folder of Git LFS, open a Command Prompt and run: git lfs install
+		<br>4.	You are now ready to go!
+		</p>
+	<h2>Setup</h2>
+		<p class="text-justify"> Install some version of Python (2.7) <br>
+		<br>1.	Install python libraries in virtual environment: pip install --editable .
+		<br>2.	Set the FLASK_APP environment variable (on OSX/Linux use export instead of set): set FLASK_APP=athome
+		<br>3.	Set the FLASK_DEBUG environment variable: set FLASK_DEBUG=true
+		<br>4.	Initialize database based on schema.sql: flask initdb
+		<br>5.	Run flask server: python athome/athome.py
+		<br>6.	Open "https://" + local_ip* + ":5000" in browser *local_ip -> Network and Sharing center-> click on the active connection -> details -> IPv4 Address
+		</p>
+	<h1>User Manual</h1>
+	<h2>Patient site:</h2>
+	<h3>Login page:</h3>
+		<p class="text-justify">On this page, the user has to enter his credentials. For now, the database has only the username admin 
+		with the password default, but it can be populated. </p>
+	<h3>Home page:</h3>
+		<p class="text-justify">This page has been left blank as the client does not know yet what should be included here. From this page
+		(like from any other page on the AtHome site) the user can also see the button for information page, the one for notifications and 
+		the one for log out and user profile.</p>
+<img class="img-thumbnail img-responsive" src="assets/m1.jpg">
+	<h3>Profile page:</h3>
+		<p class="text-justify">From this page the user can see the users information, that can be edited, as well as the profile picture 
+		that can be changed.</p>
+	<h3>Residents page:</h3>
+		<p class="text-justify">On this page the user can filter the results by First Name, Last Name, Sex, Room number or NHS number. After 
+		he sees the results, he can view the details of each patient and edit them. Also, he can add a new entry for a new patient.<br>
+<img class="img-thumbnail img-responsive" src="assets/m2.jpg">
+		Information about a patient include Personal Details, Life History, Relationships, Aliases and Photograph. On each of those tabs are 
+		details on the specific field that can be viewed and edited.<br>
+<img class="img-thumbnail img-responsive" src="assets/m3.jpg">		
+		On the Appointments tab of a patient, the user can create a new appointment for a consultation with a doctor.</p>
+	<h3>Book an Appointment page:</h3>
+		<p class="text-justify">On this page the user has to enter some details about the patient (symptoms, heart rate etc.) and book an 
+		appointment based on the available slots.</p>
+<img class="img-thumbnail img-responsive" src="assets/m4.jpg">
+	<h3>Appointment page:</h3>
+		<p class="text-justify">On this page, the user can see the appointments and check in for any of them, waiting for the doctor.</p>
+<img class="img-thumbnail img-responsive" src="assets/m5.jpg">
+	<h2>GP site:</h2>
+	<h3>Login page:</h3>
+		<p class="text-justify">On this page, the user has to enter his credentials. For now, the database has only the username admin with 
+		the password default, but it can be populated.</p>
+	<h3>Home page:</h3>
+		<p class="text-justify">This page has been left blank as the client does not know yet what should be included here.</p>
+	<h3>Information page:</h3>
+		<p class="text-justify">This page has been left blank as the client does not know yet what should be included here.</p>
+	<h3>Appointments page:</h3>
+		<p class="text-justify">On this page, the user can search on the calendar for appointments, and also he can check in to 
+		connect with the patient on the 2-way-video conference.</p>
+<img class="img-thumbnail img-responsive" src="assets/m6.jpg">
+
     </div>
 
 
